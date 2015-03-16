@@ -90,40 +90,48 @@
 						<h2>Configure your modules</h2>
 						<p>Create Gruntfile.js to your project root and include your installed module configurations</p>
 						<div class="code-container">
-							<code>module.exports = function(grunt) {</code>
-							<code>grunt.initConfig({</code>
-							<code>pkg: grunt.file.readJSON('package.json'),</code>
-							<code>sass: {</code>
-							<code>options: {</code>
-							<code>outputStyle: 'nested'</code>
-							<code>},</code>
-							<code>dist: {</code>
-							<code>files: {</code>
-							<code>'build/style.css': 'styles/SASS_sheet.scss'</code>
-							<code>}</code>
-							<code>}</code>
-							<code>},</code>
-							<code>watch: {</code>
-							<code>options: {</code>
-							<code>livereload: true,</code>
-							<code>},</code>
-							<code>css: {</code>
-							<code>files: ['**/*.scss'],</code>
-							<code>tasks: ['sass'],</code>
-							<code>options: {</code>
-							<code>spawn: false,</code>
+						<pre>
+module.exports = function(grunt) {
+ 
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-							<code>	}</code>
-							<code>}</code>
-							<code>}</code>
+        sass: {
+            options: {
+                //takes values such as 'nested' and 'compressed' Try 'em out!
+                outputStyle: 'nested'
+            },
+            dist: {
+                
+                files: {
+                    'build/style.css': 'styles/SASS_sheet.scss'
+                }
+            } 
+        },
+
+        watch: {
+         options: {
+            livereload: true,
+        },
+        css: {
+            files: ['**/*.scss'],
+            tasks: ['sass'],
+            options: {
+                spawn: false,
+            }
+        }
+    }
 
 
-							<code>});</code>
-							<code>grunt.loadNpmTasks('grunt-sass');</code>
-							<code>grunt.loadNpmTasks('grunt-contrib-watch');</code>
-							<code>grunt.registerTask('default', ['sass'], ['watch']);</code>
+});
+    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.registerTask('default', ['sass'], ['watch']);
 
-							<code>};</code>
+};
+
+
+						</pre>
 						</div>
 
 
