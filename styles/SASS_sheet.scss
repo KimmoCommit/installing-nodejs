@@ -1,0 +1,208 @@
+/* IMPORTING */
+/* .."The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file" */
+
+$color: rgba(100,200,100,1);
+@import "_fonts.scss";
+
+/* VARIABLES */
+$main-color:rgba(226,99,99,1);
+$bg:rgba(245,245,245,0.8);
+$main-color2:rgba(80,80,80,1);	
+
+/* MIXINS */
+
+
+html{
+	margin:0px;
+	border-top:2px solid $main-color;
+}
+
+body {
+	background-color:$bg;
+	margin:0px;
+}
+
+#container{
+	padding:2%;
+}
+
+footer{
+
+	position:fixed;
+	bottom:0;
+	min-height:50px;
+	width:100%;
+	background-color:$main-color2;
+	color:white;
+	padding:0.5%;
+
+	a{
+		color:$main-color;
+	}
+}
+.vertical-divider{
+	width:2px;
+	height:100px;
+	display:inline-block;
+	background-color:$main-color;
+}
+
+/* wrapper for .box-elements */
+.content-container{
+	clear:both;
+	float:left;
+	text-align: center;
+	width:100%;
+	height:100%;
+}
+
+.box{
+	text-align:left;
+	width:450px;
+	height:auto;
+	padding:1%;
+	display:inline-block;
+	border-bottom:1px dashed transparent;
+	transition: border-bottom 0.2s linear;
+	background-color: transparent;
+	margin-bottom:2%;
+}
+
+.box:hover{
+	//border-bottom:1px dashed $main-color;
+}
+
+.box-title{
+	h1 {
+		color:$main-color2;
+	}
+	h1::first-letter{
+		color:$main-color;
+	}
+}
+
+.box-content{
+
+	img{
+		margin-bottom:2%;
+		margin-top:2%;
+	}
+
+	h2 {
+		color:$main-color2;
+	}
+
+	p{
+		text-align: left;
+		color:$main-color2;
+
+	}
+
+}
+
+a{
+	color:$main-color;
+}
+
+.category{
+	float:left;
+	display:inline-block;
+}
+
+.top{
+	min-height:100px;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+#page-title{
+	cursor:pointer;
+	float:left;
+	@include border-radius(50px);
+	background-color:$main-color;
+	height:80px;
+	width:80px;
+	text-align: center;
+	transition: 0.3s linear;
+	position:fixed;
+	top:20px;
+	h1{
+		font-size:100%;
+		color:white;
+		padding:2%;
+		line-height: 75px;
+	}
+
+}
+
+#page-title:hover{
+	/* OPERATORS */
+	background-color:$main-color - 50;
+}
+
+
+#nav{
+
+	float:right;
+	line-height:5%;
+
+	ul {
+
+		li{
+			list-style: none;
+			display:inline-block;
+
+			a {
+				color:black;
+				text-decoration: none;
+				font-weight:bold;
+				font-family: 'Cantarell', sans-serif;
+				/* OPACITY WITH VARIABLE */
+				color:rgba($main-color2,0.4);
+			}
+
+			a:hover{
+				border-bottom:1px solid $main-color;
+				color:$main-color2;
+			}
+		}
+	}
+}
+
+
+#push{
+	width:100%;
+	height:50px;
+	float:left;
+}
+
+
+.message{
+	width:100px;
+	border:1px solid black;
+}
+
+.success{
+	@extend .message;
+	color:green;
+}
+
+.active{
+	border-bottom:1px solid $main-color;
+	color:$main-color2;
+}
+
+.row:last-of-type{
+	margin-bottom:15%;
+}
+
+.code-container{
+	code:after{
+		content:"\A"; white-space:pre;
+	}
+}

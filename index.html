@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GRUNT and NodeJS installation guides</title>
+	<link rel="stylesheet" href="build/style.css">
+	<link href="http://fonts.googleapis.com/css?family=Fjalla+One|Cantarell:400,400italic,700italic,700" rel="stylesheet" type="text/css"/>
+	<script src="js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="top">
+			<div id="nav">
+				<ul>
+					<li><a href="#Windows" class="active">Windows</a></li>
+					<li><a href="#Linux">Linux</a></li>
+				</ul>
+			</div>
+
+			<div id="page-title">
+				<h1>#Windows</h1>
+			</div>
+		</div>
+
+		<div class="content-container" id="Windows">
+
+			<div class="row">
+				<div class="box">
+					<div class="box-title">
+						<h1>Installing NodeJS</h1>
+					</div>
+					<div class="box-content">
+						<h2>Go to <a href="http://nodejs.org/">http://nodejs.org/</a></h2>
+						<p>You are prompted with a installation wizard - press next until you are prompted with the following:
+						</p>
+					</div>
+					<div class="box-content">
+						<img src="img/custom_setup_documentation.PNG" alt="documentation" style="width:300px;height:auto">
+						<p>Choose not to include "Online documentation shortucts" to avoid error: <a href="http://stackoverflow.com/questions/12472079/node-js-setup-wizard-ended-prematurely"> "Node.js Setup Wizard ended prematurely" </a></p>
+
+						<p>Finish the NodeJS installation by restarting your computer.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="box">
+					<div class="box-title">
+						<h1>Install GRUNT</h1>
+					</div>
+					<div class="box-content">
+						<h2>Install the GRUNT client interface </h2>
+						<p>Open Window’s command line prompt and run the following commands:</p>
+						<code>npm install -g grunt-cli</code>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Setting up GRUNT</h2>
+						<p> Create package.json file to your project root. The package.json file has your project's module dependencies. Initially you might want to have the package.json file to have this kind of data:</p>
+						<code>{
+							"name": "example-project",
+							"version": "0.1.0",
+							"devDependencies": {
+							"grunt": "~0.4.1" } }
+						</code>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Install some modules</h2>
+
+						<p>Now you can find modules that you want to use in your development. Installation happens like so:</p>
+						<code>npm install grunt-sass --save-dev</code><br/>
+						<code>npm install grunt-contrib-watch  --save-dev</code>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Configure your modules</h2>
+						<p>Create Gruntfile.js to your project root and include your installed module configurations</p>
+						<div class="code-container">
+							<code>module.exports = function(grunt) {</code>
+							<code>grunt.initConfig({</code>
+							<code>pkg: grunt.file.readJSON('package.json'),</code>
+							<code>sass: {</code>
+							<code>options: {</code>
+							<code>outputStyle: 'nested'</code>
+							<code>},</code>
+							<code>dist: {</code>
+							<code>files: {</code>
+							<code>'build/style.css': 'styles/SASS_sheet.scss'</code>
+							<code>}</code>
+							<code>}</code>
+							<code>},</code>
+							<code>watch: {</code>
+							<code>options: {</code>
+							<code>livereload: true,</code>
+							<code>},</code>
+							<code>css: {</code>
+							<code>files: ['**/*.scss'],</code>
+							<code>tasks: ['sass'],</code>
+							<code>options: {</code>
+							<code>spawn: false,</code>
+
+							<code>	}</code>
+							<code>}</code>
+							<code>}</code>
+
+
+							<code>});</code>
+							<code>grunt.loadNpmTasks('grunt-sass');</code>
+							<code>grunt.loadNpmTasks('grunt-contrib-watch');</code>
+							<code>grunt.registerTask('default', ['sass'], ['watch']);</code>
+
+							<code>};</code>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Run GRUNT on project root</h2>
+
+						<p>Now you can run your modules by opening command line prompt at the project root and running just:</p>
+						<code>grunt</code><br/>
+					</div>
+				</div>
+			</div>
+		</div><!-- .content-container -->
+
+		<div class="content-container" id="Linux" style="display:none;">
+
+			<div class="row">
+				<div class="box">
+					<div class="box-title">
+						<h1>Installing NodeJS</h1>
+					</div>
+					<div class="box-content">
+						<h2>Install NodeJS and the package manager</h2>
+						<p>Open your terminal (default ctrl+alt+t) and run commands:</p>
+						<code>sudo apt-get install nodejs</code><br/>
+						<code>ln -s /usr/bin/nodejs /usr/bin/node</code>
+						<code>sudo apt-get install npm</code>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="box">
+					<div class="box-title">
+						<h1>Install GRUNT</h1>
+					</div>
+					<div class="box-content">
+						<h2>Install the GRUNT client interface </h2>
+						<p>Open run the following commands in your terminal:</p>
+						<code>npm install -g grunt-cli</code>
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Install some modules</h2>
+
+						<p>Now you can find modules that you want to use in your development. Installation happens like so:</p>
+						<code>npm install grunt-sass --save-dev</code><br/>
+						<code>npm install grunt-contrib-watch  --save-dev</code>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Configure your modules</h2>
+						<p>Create Gruntfile.js to your project root and include your installed module configurations</p>
+						<div class="code-container">
+							<code>module.exports = function(grunt) {</code>
+							<code>grunt.initConfig({</code>
+							<code>pkg: grunt.file.readJSON('package.json'),</code>
+							<code>sass: {</code>
+							<code>options: {</code>
+							<code>outputStyle: 'nested'</code>
+							<code>},</code>
+							<code>dist: {</code>
+							<code>files: {</code>
+							<code>'build/style.css': 'styles/SASS_sheet.scss'</code>
+							<code>}</code>
+							<code>}</code>
+							<code>},</code>
+							<code>watch: {</code>
+							<code>options: {</code>
+							<code>livereload: true,</code>
+							<code>},</code>
+							<code>css: {</code>
+							<code>files: ['**/*.scss'],</code>
+							<code>tasks: ['sass'],</code>
+							<code>options: {</code>
+							<code>spawn: false,</code>
+
+							<code>	}</code>
+							<code>}</code>
+							<code>}</code>
+
+
+							<code>});</code>
+							<code>grunt.loadNpmTasks('grunt-sass');</code>
+							<code>grunt.loadNpmTasks('grunt-contrib-watch');</code>
+							<code>grunt.registerTask('default', ['sass'], ['watch']);</code>
+
+							<code>};</code>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-content">
+						<h2>Run GRUNT on project root</h2>
+
+						<p>Now you can run your modules by opening command line prompt at the project root and running just:</p>
+						<code>grunt</code><br/>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div><!-- .content-container -->
+	</div><!-- .container-->
+	<div id="push"></div>
+	<footer>
+		<p>Good post about GRUNT: <a href="http://24ways.org/2013/grunt-is-not-weird-and-hard/">GRUNT is not weird and hard</a></p>
+	</footer>
+
+</body>
+
+<script>
+	$(function(){
+		$("#nav ul li a").click(function(e){
+			e.preventDefault();
+			var href = $(this).attr('href');
+			$("#nav ul li a").removeClass("active");
+			$(this).addClass("active");
+			$(".content-container").hide();
+			$(href).fadeIn();
+			$("#page-title h1").html(href);
+		});
+	});
+</script>
+
+<script>
+	$(function(){
+		$("#page-title").click(function(e){
+			e.preventDefault();
+
+			$('html, body').animate({scrollTop:0}, 'slow');
+		});
+	});
+</script>
+
+
+</html>
